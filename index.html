@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serial Experiments Lain</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #111; /* Lainの雰囲気に合わせた暗めの背景色 */
+      font-family: Arial, sans-serif; /* デフォルトのフォント指定 */
+    }
+
+    .lain-background {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://giffiles.alphacoders.com/171/171273.gif');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      cursor: pointer; /* カーソルをポインターに変更 */
+    }
+  </style>
+</head>
+<body>
+  <div class="lain-background" id="bg-music"></div>
+
+  <script>
+    // 音楽ファイルのURL
+    var audioUrl = 'https://archive.org/download/serial-experiments-lain-ps1-ost/Serial%20Experiments%20Lain%20PS1%20-%20Soundtrack/Main%20Theme.mp3';
+
+    var audio = new Audio(audioUrl);
+    var isPlaying = false;
+
+    // .lain-background をクリックしたときの処理
+    document.querySelector('.lain-background').addEventListener('click', function() {
+      if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+      } else {
+        audio.currentTime = 0; // 音楽を最初から再生する
+        audio.play();
+        isPlaying = true;
+      }
+    });
+
+    // 音楽をループ再生する
+    audio.addEventListener('ended', function() {
+      audio.currentTime = 0;
+      audio.play();
+    });
+  </script>
+</body>
+</html>
